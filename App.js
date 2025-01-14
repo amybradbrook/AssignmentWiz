@@ -12,11 +12,19 @@ export default function App() {
   function openCreateSemester(){
     setModalIsVisible(true);
   }
+
+  function addSemester(seasonValue, semesterName){
+    setSemester((currentSemester) => [...currentSemester, {season: seasonValue, semester: semesterName, id: Math.random().toString()}]);
+  }
+
+  function endGoalHandler(){
+    setModalIsVisible(false);
+  }
   
   return (
     <View style={styles.container}>
       <View style={styles.header}></View>
-      <SemesterModal visible={modalIsVisible}/>
+      <SemesterModal visible={modalIsVisible} closeModal={endGoalHandler} onAddSemester={addSemester}/>
       <View style={styles.middle}>
         <View style={styles.winter}>
           <Text style={styles.semesterName}>Winter 2024</Text>
